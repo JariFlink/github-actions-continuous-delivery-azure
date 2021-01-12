@@ -6,8 +6,9 @@ on:
       - main
 
 env:
-  DOCKER_IMAGE_NAME: JariFlink-azure-ttt # Must not exist as a package associated with a different repo!
+  DOCKER_IMAGE_NAME: jariflink-azure-ttt # Must not exist as a package associated with a different repo!
   IMAGE_REGISTRY_URL: docker.pkg.github.com
+  REPOSITORY_NAME: jariflink
   #################################################
   ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
   #################################################
@@ -72,7 +73,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{env.AZURE_WEBAPP_NAME}}
-          images: ${{env.IMAGE_REGISTRY_URL}}/${{github.repository}}/${{env.DOCKER_IMAGE_NAME}}:${{github.sha}}
+          images: ${{env.IMAGE_REGISTRY_URL}}/${{env.REPOSITORY_NAME}}/${{env.DOCKER_IMAGE_NAME}}:${{github.sha}}
           
       - name: Azure logout
         run: |
